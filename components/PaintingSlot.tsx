@@ -34,12 +34,7 @@ export default function PaintingSlotComp({ slot, index, onSave }: Props) {
   }
 
   function handleKey(e: React.KeyboardEvent) {
-    if (e.key === "Enter")  commit();
-    if (e.key === "Escape") {
-      setEditing(false);
-      setTicker(slot.ticker);
-      setName(slot.name);
-    }
+    if (e.key === "Enter") commit();
   }
 
   return (
@@ -154,7 +149,7 @@ export default function PaintingSlotComp({ slot, index, onSave }: Props) {
               textAlign: "center",
             }}
           >
-            Enter to save · Esc to cancel
+            Enter to save
           </p>
         </div>
       ) : isEmpty ? (
