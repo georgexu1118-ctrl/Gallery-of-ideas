@@ -26,76 +26,63 @@ const line: Variants = {
   hover: { scaleX: 1, originX: 0, transition: { duration: 0.5, ease: "easeOut" as const } },
 };
 
-const mapPaths: Record<RegionKey, string[]> = {
-  us: [
-    "M33 75 C42 57 60 49 80 52 C99 43 124 45 141 57 C155 59 168 66 180 80 C171 88 151 90 136 85 C121 96 101 97 84 89 C67 93 48 89 33 75 Z",
-    "M78 92 C88 96 100 98 114 96 C104 108 91 113 80 105 C76 101 75 97 78 92 Z",
-    "M151 91 C158 90 166 91 173 96 C165 101 157 101 150 97 C147 95 148 92 151 91 Z",
-  ],
-  eu: [
-    "M74 50 C85 41 101 42 113 50 C125 45 140 51 144 64 C154 68 159 78 154 88 C143 91 134 86 128 78 C118 83 105 82 96 74 C86 80 72 77 66 68 C60 61 64 54 74 50 Z",
-    "M101 80 C108 89 116 97 127 102 C117 106 107 103 101 94 C97 88 96 83 101 80 Z",
-    "M137 91 C145 91 151 95 154 102 C146 104 139 101 136 96 C134 93 134 91 137 91 Z",
-  ],
-  asia: [
-    "M46 66 C62 43 92 37 119 45 C137 35 166 40 184 58 C198 65 205 82 196 96 C181 101 165 94 154 82 C139 92 118 92 103 82 C89 95 67 95 52 83 C43 77 41 71 46 66 Z",
-    "M125 88 C137 92 148 102 155 117 C141 117 129 108 122 96 C119 91 120 88 125 88 Z",
-    "M166 96 C176 99 186 106 190 117 C178 119 168 112 163 103 C161 99 162 96 166 96 Z",
-    "M88 89 C96 95 103 103 105 114 C94 113 86 105 82 96 C80 92 82 89 88 89 Z",
-  ],
+/*
+ * Simplified but geographically accurate silhouettes.
+ * viewBox: 0 0 220 150 — each path hand-fitted to fill ~65% of the canvas.
+ */
+const mapPaths: Record<RegionKey, string> = {
+  // Continental United States — flat north border, Florida peninsula, angled west coast
+  us: "M42,32 L38,46 L35,60 L38,72 L50,82 L68,90 L86,94 L102,94 L112,90 L116,82 L120,98 L122,114 L126,104 L128,86 L136,74 L150,60 L162,44 L168,32 L148,26 L125,25 L100,25 L75,26 L55,28 Z",
+
+  // Europe — NW Atlantic edge, Iberian coast, Mediterranean, Adriatic, Balkans, Baltic
+  eu: "M68,30 L54,44 L48,58 L52,70 L66,82 L84,90 L98,96 L100,112 L106,120 L114,116 L114,100 L120,88 L140,76 L155,62 L158,48 L152,36 L135,28 L112,24 L90,24 L74,26 Z",
+
+  // Asia Pacific — massive east-west span, Indian subcontinent peninsula, SE Asian coast
+  asia: "M35,30 L58,24 L88,20 L118,20 L148,22 L170,28 L186,38 L192,52 L188,66 L176,76 L158,82 L140,85 L128,80 L120,92 L115,108 L112,118 L109,106 L112,94 L106,86 L96,92 L85,84 L74,90 L62,82 L46,74 L32,60 L28,44 Z",
 };
 
 function RegionMap({ region, title }: { region: RegionKey; title: string }) {
+  const gradId = `${region}-fill`;
+  const glowId = `${region}-glow`;
+
   return (
     <svg
       viewBox="0 0 220 150"
       role="img"
-      aria-label={`${title} map`}
+      aria-label={`${title} region`}
       style={{
         width: "100%",
         maxWidth: "220px",
         aspectRatio: "22 / 15",
         display: "block",
-        filter: "drop-shadow(0 18px 24px rgba(0, 0, 0, 0.45))",
+        filter: "drop-shadow(0 14px 22px rgba(0,0,0,0.5))",
+        overflow: "visible",
       }}
     >
       <defs>
-        <radialGradient id={`${region}-map-glow`} cx="50%" cy="50%" r="60%">
-          <stop offset="0%" stopColor="rgba(226, 180, 105, 0.45)" />
-          <stop offset="58%" stopColor="rgba(200, 160, 96, 0.16)" />
+        <radialGradient id={glowId} cx="50%" cy="50%" r="60%">
+          <stop offset="0%" stopColor="rgba(226, 180, 105, 0.18)" />
           <stop offset="100%" stopColor="rgba(200, 160, 96, 0)" />
         </radialGradient>
-        <linearGradient id={`${region}-map-fill`} x1="25%" x2="75%" y1="15%" y2="90%">
-          <stop offset="0%" stopColor="rgba(242, 224, 188, 0.78)" />
-          <stop offset="55%" stopColor="rgba(200, 160, 96, 0.48)" />
-          <stop offset="100%" stopColor="rgba(118, 88, 47, 0.5)" />
+        <linearGradient id={gradId} x1="20%" x2="80%" y1="10%" y2="95%">
+          <stop offset="0%" stopColor="rgba(240, 220, 178, 0.82)" />
+          <stop offset="50%" stopColor="rgba(200, 160, 96, 0.55)" />
+          <stop offset="100%" stopColor="rgba(110, 80, 38, 0.52)" />
         </linearGradient>
       </defs>
-      <ellipse cx="112" cy="78" rx="92" ry="58" fill={`url(#${region}-map-glow)`} />
+
+      {/* Ambient glow behind the shape */}
+      <ellipse cx="110" cy="75" rx="95" ry="60" fill={`url(#${glowId})`} />
+
+      {/* Landmass silhouette */}
       <path
-        d="M24 93 C64 72 97 70 130 82 C157 92 180 89 203 76"
-        fill="none"
-        stroke="rgba(200, 160, 96, 0.16)"
-        strokeWidth="1"
+        d={mapPaths[region]}
+        fill={`url(#${gradId})`}
+        stroke="rgba(240, 215, 165, 0.5)"
+        strokeWidth="1.1"
+        strokeLinejoin="round"
+        strokeLinecap="round"
       />
-      <path
-        d="M24 108 C67 91 103 88 137 98 C161 105 184 101 203 92"
-        fill="none"
-        stroke="rgba(200, 160, 96, 0.1)"
-        strokeWidth="1"
-      />
-      {mapPaths[region].map((path, i) => (
-        <path
-          key={path}
-          d={path}
-          fill={`url(#${region}-map-fill)`}
-          stroke="rgba(242, 224, 188, 0.42)"
-          strokeWidth={i === 0 ? "1.15" : "0.85"}
-          strokeLinejoin="round"
-        />
-      ))}
-      <circle cx="112" cy="78" r="2.3" fill="rgba(235, 190, 115, 0.95)" />
-      <circle cx="112" cy="78" r="8" fill="none" stroke="rgba(235, 190, 115, 0.32)" strokeWidth="1" />
     </svg>
   );
 }
@@ -122,6 +109,7 @@ export default function RegionGalleryCard({ region, title, label, index = 0 }: R
           gridTemplateColumns: "minmax(0, 0.82fr) minmax(118px, 0.68fr)",
           gap: "clamp(1rem, 2vw, 1.75rem)",
           alignItems: "center",
+          cursor: "pointer",
         }}
       >
         <motion.div
@@ -134,6 +122,7 @@ export default function RegionGalleryCard({ region, title, label, index = 0 }: R
             pointerEvents: "none",
           }}
         />
+
         <div style={{ position: "relative", zIndex: 1, minWidth: 0 }}>
           <motion.div
             variants={line}
@@ -180,6 +169,7 @@ export default function RegionGalleryCard({ region, title, label, index = 0 }: R
             Stock Room
           </p>
         </div>
+
         <div style={{ position: "relative", zIndex: 1, justifySelf: "end", width: "100%" }}>
           <RegionMap region={region} title={title} />
         </div>
