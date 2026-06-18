@@ -18,10 +18,9 @@ export default function LandingPage() {
 
   return (
     <main className="relative h-screen w-full overflow-hidden flex flex-col items-center justify-center">
-      {/* ── Monet background ──────────────────────────────────────────── */}
       <MonetBackground />
 
-      {/* ── Cinematic blackout overlay ────────────────────────────────── */}
+      {/* Cinematic blackout overlay */}
       <motion.div
         className="fixed inset-0 pointer-events-none"
         style={{ background: "#040508", zIndex: 50 }}
@@ -30,7 +29,7 @@ export default function LandingPage() {
         transition={{ duration: 0.95, ease: [0.4, 0, 0.2, 1] }}
       />
 
-      {/* ── Hero content ──────────────────────────────────────────────── */}
+      {/* Hero content */}
       <motion.div
         className="relative flex flex-col items-center text-center"
         style={{ zIndex: 10, padding: "0 1.5rem", maxWidth: "900px" }}
@@ -53,10 +52,10 @@ export default function LandingPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.7, duration: 1.2, ease: "easeOut" }}
           style={{
-            fontSize: "0.58rem",
+            fontSize: "0.62rem",
             letterSpacing: "0.48em",
             textTransform: "uppercase",
-            color: "rgba(200, 160, 96, 0.42)",
+            color: "rgba(210, 170, 105, 0.82)",
             fontFamily: "var(--font-inter), sans-serif",
             marginBottom: "2.25rem",
           }}
@@ -75,13 +74,13 @@ export default function LandingPage() {
             fontWeight: 300,
             fontStyle: "italic",
             lineHeight: 0.92,
-            color: "rgba(232, 218, 195, 0.9)",
+            color: "rgba(242, 232, 210, 0.97)",
             letterSpacing: "-0.01em",
           }}
         >
           George&apos;s
           <br />
-          <span style={{ color: "rgba(228, 215, 190, 0.75)" }}>Gallery</span>
+          <span style={{ color: "rgba(235, 222, 198, 0.88)" }}>Gallery</span>
         </motion.h1>
 
         {/* Subtitle */}
@@ -90,10 +89,10 @@ export default function LandingPage() {
           animate={{ opacity: 1 }}
           transition={{ delay: 1.3, duration: 1.4, ease: "easeOut" }}
           style={{
-            fontSize: "clamp(0.56rem, 1.1vw, 0.68rem)",
-            letterSpacing: "0.38em",
+            fontSize: "clamp(0.6rem, 1.1vw, 0.7rem)",
+            letterSpacing: "0.35em",
             textTransform: "uppercase",
-            color: "rgba(135, 122, 100, 0.48)",
+            color: "rgba(175, 160, 135, 0.72)",
             fontFamily: "var(--font-inter), sans-serif",
             fontWeight: 300,
             marginTop: "2.5rem",
@@ -116,45 +115,41 @@ export default function LandingPage() {
           whileHover={{ scale: 1.015 }}
           whileTap={{ scale: 0.985 }}
           style={{
-            padding: "0.875rem 2.75rem",
-            border: "1px solid rgba(200, 160, 96, 0.18)",
+            padding: "0.9rem 2.75rem",
+            border: "1px solid rgba(210, 170, 105, 0.4)",
             background: "transparent",
             cursor: isExiting ? "default" : "pointer",
             letterSpacing: "0.42em",
-            fontSize: "0.58rem",
+            fontSize: "0.62rem",
             textTransform: "uppercase",
-            color: "rgba(185, 172, 148, 0.58)",
+            color: "rgba(210, 195, 165, 0.82)",
             fontFamily: "var(--font-inter), sans-serif",
             fontWeight: 400,
             outline: "none",
-            transition: "color 0.45s ease, border-color 0.45s ease",
+            transition: "color 0.4s ease, border-color 0.4s ease",
           }}
           onMouseEnter={(e) => {
-            (e.currentTarget as HTMLButtonElement).style.color =
-              "rgba(200, 160, 96, 0.78)";
-            (e.currentTarget as HTMLButtonElement).style.borderColor =
-              "rgba(200, 160, 96, 0.32)";
+            (e.currentTarget as HTMLButtonElement).style.color = "rgba(220, 178, 108, 1)";
+            (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(220, 178, 108, 0.65)";
           }}
           onMouseLeave={(e) => {
-            (e.currentTarget as HTMLButtonElement).style.color =
-              "rgba(185, 172, 148, 0.58)";
-            (e.currentTarget as HTMLButtonElement).style.borderColor =
-              "rgba(200, 160, 96, 0.18)";
+            (e.currentTarget as HTMLButtonElement).style.color = "rgba(210, 195, 165, 0.82)";
+            (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(210, 170, 105, 0.4)";
           }}
         >
           Enter the Gallery
         </motion.button>
       </motion.div>
 
-      {/* ── Attribution ───────────────────────────────────────────────── */}
+      {/* Attribution */}
       <motion.p
         className="absolute"
         style={{
           bottom: "2.25rem",
-          fontSize: "0.52rem",
+          fontSize: "0.56rem",
           letterSpacing: "0.4em",
           textTransform: "uppercase",
-          color: "rgba(95, 86, 70, 0.38)",
+          color: "rgba(160, 145, 115, 0.6)",
           fontFamily: "var(--font-inter), sans-serif",
           zIndex: 10,
         }}

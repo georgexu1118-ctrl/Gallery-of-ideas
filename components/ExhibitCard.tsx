@@ -47,9 +47,9 @@ export default function ExhibitCard({ thesis, index = 0 }: ExhibitCardProps) {
           initial="rest"
           whileHover="hover"
           style={{
-            background: "#08090d",
+            background: "#0e0f14",
             padding: "clamp(2rem, 4vw, 3rem)",
-            border: "1px solid rgba(200, 160, 96, 0.07)",
+            border: "1px solid rgba(200, 160, 96, 0.14)",
           }}
         >
           {/* Ambient hover glow */}
@@ -57,9 +57,8 @@ export default function ExhibitCard({ thesis, index = 0 }: ExhibitCardProps) {
             variants={overlay}
             className="absolute inset-0 pointer-events-none"
             style={{
-              background:
-                "radial-gradient(ellipse at 50% 0%, rgba(200, 160, 96, 0.05) 0%, transparent 70%)",
-              boxShadow: "inset 0 0 0 1px rgba(200, 160, 96, 0.16)",
+              background: "radial-gradient(ellipse at 50% 0%, rgba(200, 160, 96, 0.07) 0%, transparent 70%)",
+              boxShadow: "inset 0 0 0 1px rgba(200, 160, 96, 0.28)",
             }}
           />
 
@@ -69,7 +68,7 @@ export default function ExhibitCard({ thesis, index = 0 }: ExhibitCardProps) {
             className="relative z-10 mb-8"
             style={{
               height: "1px",
-              background: "rgba(200, 160, 96, 0.42)",
+              background: "rgba(210, 170, 105, 0.65)",
             }}
           />
 
@@ -78,10 +77,10 @@ export default function ExhibitCard({ thesis, index = 0 }: ExhibitCardProps) {
             <p
               className="relative z-10"
               style={{
-                fontSize: "0.58rem",
+                fontSize: "0.6rem",
                 letterSpacing: "0.42em",
                 textTransform: "uppercase",
-                color: "rgba(200, 160, 96, 0.4)",
+                color: "rgba(210, 170, 105, 0.78)",
                 fontFamily: "var(--font-inter), sans-serif",
                 marginBottom: "0.875rem",
               }}
@@ -99,7 +98,7 @@ export default function ExhibitCard({ thesis, index = 0 }: ExhibitCardProps) {
               fontWeight: 400,
               fontStyle: "italic",
               lineHeight: 1.22,
-              color: "rgba(232, 220, 198, 0.88)",
+              color: "rgba(242, 232, 210, 0.96)",
               marginBottom: "0.6rem",
             }}
           >
@@ -110,9 +109,9 @@ export default function ExhibitCard({ thesis, index = 0 }: ExhibitCardProps) {
           <p
             className="relative z-10"
             style={{
-              fontSize: "0.58rem",
+              fontSize: "0.6rem",
               letterSpacing: "0.28em",
-              color: "rgba(125, 115, 97, 0.46)",
+              color: "rgba(175, 160, 130, 0.7)",
               fontFamily: "var(--font-inter), sans-serif",
               marginBottom: "1.5rem",
             }}
@@ -125,10 +124,10 @@ export default function ExhibitCard({ thesis, index = 0 }: ExhibitCardProps) {
             className="relative z-10 flex-grow"
             style={{
               fontFamily: 'var(--font-cormorant), "Cormorant Garamond", Georgia, serif',
-              fontSize: "0.975rem",
+              fontSize: "1rem",
               fontStyle: "italic",
               lineHeight: 1.75,
-              color: "rgba(150, 138, 118, 0.6)",
+              color: "rgba(192, 178, 152, 0.82)",
             }}
           >
             &ldquo;{thesis.excerpt}&rdquo;
@@ -141,10 +140,10 @@ export default function ExhibitCard({ thesis, index = 0 }: ExhibitCardProps) {
           >
             <span
               style={{
-                fontSize: "0.57rem",
+                fontSize: "0.58rem",
                 letterSpacing: "0.4em",
                 textTransform: "uppercase",
-                color: "rgba(200, 160, 96, 0.52)",
+                color: "rgba(210, 170, 105, 0.85)",
                 fontFamily: "var(--font-inter), sans-serif",
               }}
             >
@@ -155,7 +154,7 @@ export default function ExhibitCard({ thesis, index = 0 }: ExhibitCardProps) {
               height="7"
               viewBox="0 0 13 7"
               fill="none"
-              style={{ color: "rgba(200, 160, 96, 0.52)" }}
+              style={{ color: "rgba(210, 170, 105, 0.85)" }}
             >
               <path d="M0 3.5H11M8.5 1L11 3.5L8.5 6" stroke="currentColor" strokeWidth="0.7" />
             </svg>
