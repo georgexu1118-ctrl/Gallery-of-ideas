@@ -85,6 +85,12 @@ export default function PaintingSlotComp({ slot, index, onSave }: Props) {
       {editing ? (
         /* ── Edit mode ──────────────────────────────────────────────── */
         <div
+          /* Save whenever focus leaves the entire edit area */
+          onBlur={(e) => {
+            if (!e.currentTarget.contains(e.relatedTarget as Node)) {
+              commit();
+            }
+          }}
           style={{
             position: "absolute",
             inset: 0,
@@ -123,7 +129,6 @@ export default function PaintingSlotComp({ slot, index, onSave }: Props) {
             value={name}
             onChange={(e) => setName(e.target.value)}
             onKeyDown={handleKey}
-            onBlur={commit}
             placeholder="Company name"
             style={{
               background: "transparent",
