@@ -6,7 +6,11 @@ export interface PaintingSlot {
   name: string;
 }
 
-export const SLOT_COUNT = 10;
+export const REGION_SLOT_COUNTS: Record<RegionKey, number> = {
+  us:   15,
+  eu:   10,
+  asia: 10,
+};
 
 export const REGION_META: Record<RegionKey, { title: string; label: string; wallLabel: string }> = {
   us:   { title: "US",   label: "North America", wallLabel: "North American Equities" },
@@ -14,8 +18,8 @@ export const REGION_META: Record<RegionKey, { title: string; label: string; wall
   asia: { title: "Asia", label: "Asia Pacific",  wallLabel: "Asia Pacific Equities"   },
 };
 
-function emptySlots(): PaintingSlot[] {
-  return Array.from({ length: SLOT_COUNT }, (_, i) => ({
+function emptySlots(count: number): PaintingSlot[] {
+  return Array.from({ length: count }, (_, i) => ({
     id: i + 1,
     ticker: "",
     name: "",
@@ -23,12 +27,22 @@ function emptySlots(): PaintingSlot[] {
 }
 
 export function getSlots(region: RegionKey): PaintingSlot[] {
-  if (typeof window === "undefined") return emptySlots();
+  const count = REGION_SLOT_COUNTS[region];
+  if (typeof window === "undefined") return emptySlots(count);
   try {
     const raw = localStorage.getItem(`gallery-wall-${region}`);
-    return raw ? JSON.parse(raw) : emptySlots();
+    if (!raw) return emptySlots(count);
+    const saved: PaintingSlot[] = JSON.parse(raw);
+    if (saved.length >= count) return saved;
+    // Pad with empty slots to reach the target count, preserving saved data
+    const extra = Array.from({ length: count - saved.length }, (_, i) => ({
+      id: saved.length + i + 1,
+      ticker: "",
+      name: "",
+    }));
+    return [...saved, ...extra];
   } catch {
-    return emptySlots();
+    return emptySlots(count);
   }
 }
 

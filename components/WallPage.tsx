@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import PaintingSlotComp from "@/components/PaintingSlot";
-import { getSlots, saveSlots, REGION_META, type RegionKey, type PaintingSlot } from "@/lib/stockRoom";
+import { getSlots, saveSlots, REGION_META, REGION_SLOT_COUNTS, type RegionKey, type PaintingSlot } from "@/lib/stockRoom";
 
 interface Props {
   region: RegionKey;
@@ -12,6 +12,7 @@ interface Props {
 
 export default function WallPage({ region }: Props) {
   const meta = REGION_META[region];
+  const slotCount = REGION_SLOT_COUNTS[region];
   const [slots, setSlots] = useState<PaintingSlot[]>([]);
   const [mounted, setMounted] = useState(false);
 
@@ -184,7 +185,7 @@ export default function WallPage({ region }: Props) {
             }}
           >
             Wall I&nbsp;&nbsp;·&nbsp;&nbsp;
-            {mounted ? `${filled} of 10 positions filled` : "10 positions"}
+            {mounted ? `${filled} of ${slotCount} positions filled` : `${slotCount} positions`}
             &nbsp;&nbsp;·&nbsp;&nbsp;Click any frame to add a ticker
           </motion.p>
         </header>
