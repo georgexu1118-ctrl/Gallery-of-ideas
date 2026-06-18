@@ -1,26 +1,132 @@
 @import "tailwindcss";
 
+/* ── Design tokens ─────────────────────────────────────────────────────── */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg:           #07080c;
+  --bg-surface:   #09090e;
+  --bg-hover:     #0d0e14;
+  --fg:           #e8dfd0;
+  --fg-muted:     #8a8070;
+  --fg-dim:       #5a5548;
+  --gold:         #c8a060;
+  --gold-glow:    rgba(200, 160, 96, 0.12);
+  --gold-border:  rgba(200, 160, 96, 0.1);
+  --ember:        #c87030;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-background: var(--bg);
+  --color-foreground: var(--fg);
+  --font-sans: var(--font-inter), "Inter", ui-sans-serif, sans-serif;
+  --font-display: var(--font-cormorant), "Cormorant Garamond", Georgia, serif;
+  --font-serif: var(--font-playfair), "Playfair Display", Georgia, serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ── Base reset ─────────────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+  overflow-x: hidden;
+  color-scheme: dark;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  min-height: 100%;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-inter), "Inter", ui-sans-serif, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* ── Selection ──────────────────────────────────────────────────────────── */
+::selection {
+  background: rgba(200, 160, 96, 0.18);
+  color: #e8dfd0;
+}
+
+/* ── Scrollbar ──────────────────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(200, 160, 96, 0.2);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(200, 160, 96, 0.4);
+}
+
+/* ── Background animations (Monet) ─────────────────────────────────────── */
+@keyframes monet-pulse {
+  0%, 100% { opacity: 0.65; transform: scale(1); }
+  50%       { opacity: 1;    transform: scale(1.06); }
+}
+
+@keyframes monet-glow {
+  0%, 100% { opacity: 0.7; }
+  50%       { opacity: 1;   }
+}
+
+@keyframes monet-drift {
+  0%, 100% { transform: translateX(0)   scaleX(1);    opacity: 0.7; }
+  50%       { transform: translateX(12px) scaleX(1.02); opacity: 1;   }
+}
+
+@keyframes monet-fog {
+  0%, 100% { transform: translate(0, 0); opacity: 0.75; }
+  33%       { transform: translate(8px, -4px); opacity: 1; }
+  66%       { transform: translate(-6px, 3px); opacity: 0.85; }
+}
+
+@keyframes monet-ripple {
+  0%, 100% { transform: translateX(0)  scaleX(1);    opacity: 0.45; }
+  40%       { transform: translateX(6px) scaleX(1.02); opacity: 0.8;  }
+  70%       { transform: translateX(-5px) scaleX(0.98); opacity: 0.6; }
+}
+
+/* ── Prose styles for thesis page ───────────────────────────────────────── */
+.thesis-body {
+  font-family: var(--font-cormorant), "Cormorant Garamond", Georgia, serif;
+  font-size: 1.175rem;
+  line-height: 1.9;
+  color: rgba(220, 210, 190, 0.8);
+}
+
+.thesis-body p {
+  margin-bottom: 1.75rem;
+}
+
+.thesis-body p:first-child::first-letter {
+  font-size: 3.5rem;
+  line-height: 0.85;
+  float: left;
+  margin-right: 0.08em;
+  margin-top: 0.08em;
+  color: var(--gold);
+  font-weight: 500;
+}
+
+.thesis-body h2 {
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: rgba(235, 225, 205, 0.9);
+  margin-top: 3rem;
+  margin-bottom: 1.25rem;
+  letter-spacing: 0.01em;
+}
+
+.thesis-body blockquote {
+  border-left: 1px solid rgba(200, 160, 96, 0.3);
+  padding-left: 1.5rem;
+  margin: 2rem 0;
+  font-style: italic;
+  color: rgba(200, 185, 160, 0.7);
 }
