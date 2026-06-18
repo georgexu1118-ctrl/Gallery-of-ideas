@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { motion, type Variants } from "framer-motion";
 
 type RegionKey = "us" | "eu" | "asia";
@@ -94,6 +95,7 @@ export default function RegionGalleryCard({ region, title, label, index = 0 }: R
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.25 + index * 0.1, duration: 0.85, ease: [0.25, 0.46, 0.45, 0.94] }}
     >
+      <Link href={`/gallery/${region}`} style={{ textDecoration: "none", display: "block" }}>
       <motion.article
         variants={card}
         initial="rest"
@@ -174,6 +176,7 @@ export default function RegionGalleryCard({ region, title, label, index = 0 }: R
           <RegionMap region={region} title={title} />
         </div>
       </motion.article>
+      </Link>
     </motion.div>
   );
 }
