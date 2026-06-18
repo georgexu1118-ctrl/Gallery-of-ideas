@@ -3,7 +3,14 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import ExhibitCard from "@/components/ExhibitCard";
+import RegionGalleryCard from "@/components/RegionGalleryCard";
 import { getAllTheses } from "@/lib/theses";
+
+const regions = [
+  { region: "us", title: "US", label: "North America" },
+  { region: "eu", title: "EU", label: "Europe" },
+  { region: "asia", title: "Asia", label: "Asia Pacific" },
+] as const;
 
 export default function GalleryPage() {
   const theses = getAllTheses();
@@ -79,6 +86,58 @@ export default function GalleryPage() {
               marginBottom: "clamp(2rem, 4vw, 3.5rem)",
             }}
           />
+
+          <section style={{ marginBottom: "clamp(4rem, 7vw, 6rem)" }}>
+            <motion.p
+              initial={{ opacity: 0, y: 6 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.55, duration: 0.9 }}
+              style={{
+                fontSize: "0.6rem",
+                letterSpacing: "0.46em",
+                textTransform: "uppercase",
+                color: "rgba(210, 170, 105, 0.75)",
+                fontFamily: "var(--font-inter), sans-serif",
+                marginBottom: "1rem",
+              }}
+            >
+              Sector
+            </motion.p>
+            <motion.h1
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.65, duration: 1, ease: [0.16, 1, 0.3, 1] }}
+              style={{
+                fontFamily: 'var(--font-cormorant), "Cormorant Garamond", Georgia, serif',
+                fontSize: "clamp(2.5rem, 5.6vw, 5rem)",
+                fontWeight: 300,
+                fontStyle: "italic",
+                lineHeight: 1,
+                color: "rgba(242, 230, 205, 0.96)",
+                marginBottom: "clamp(1.8rem, 3.5vw, 2.6rem)",
+              }}
+            >
+              Regional Galleries
+            </motion.h1>
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 320px), 1fr))",
+                gap: "1px",
+                background: "rgba(200, 160, 96, 0.12)",
+              }}
+            >
+              {regions.map((region, i) => (
+                <RegionGalleryCard
+                  key={region.region}
+                  region={region.region}
+                  title={region.title}
+                  label={region.label}
+                  index={i}
+                />
+              ))}
+            </div>
+          </section>
 
           {/* Section label */}
           <motion.p
