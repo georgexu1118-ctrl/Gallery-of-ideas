@@ -2,16 +2,16 @@
 
 /* ── Design tokens ─────────────────────────────────────────────────────── */
 :root {
-  --bg:           #07080c;
-  --bg-surface:   #09090e;
-  --bg-hover:     #0d0e14;
-  --fg:           #e8dfd0;
-  --fg-muted:     #8a8070;
-  --fg-dim:       #5a5548;
-  --gold:         #c8a060;
-  --gold-glow:    rgba(200, 160, 96, 0.12);
-  --gold-border:  rgba(200, 160, 96, 0.1);
-  --ember:        #c87030;
+  --bg:           #101116;
+  --bg-surface:   #15161d;
+  --bg-hover:     #1a1c24;
+  --fg:           #f5ead3;
+  --fg-muted:     #c3b28f;
+  --fg-dim:       #9b8a6d;
+  --gold:         #f2c46d;
+  --gold-glow:    rgba(242, 196, 109, 0.2);
+  --gold-border:  rgba(242, 196, 109, 0.2);
+  --ember:        #d9863a;
 }
 
 @theme inline {
@@ -45,8 +45,8 @@ body {
 
 /* ── Selection ──────────────────────────────────────────────────────────── */
 ::selection {
-  background: rgba(200, 160, 96, 0.18);
-  color: #e8dfd0;
+  background: rgba(242, 196, 109, 0.28);
+  color: #fff3d8;
 }
 
 /* ── Scrollbar ──────────────────────────────────────────────────────────── */
@@ -57,11 +57,11 @@ body {
   background: var(--bg);
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(200, 160, 96, 0.2);
+  background: rgba(242, 196, 109, 0.34);
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(200, 160, 96, 0.4);
+  background: rgba(242, 196, 109, 0.56);
 }
 
 /* ── Background animations (Monet) ─────────────────────────────────────── */
@@ -97,7 +97,7 @@ body {
   font-family: var(--font-cormorant), "Cormorant Garamond", Georgia, serif;
   font-size: 1.175rem;
   line-height: 1.9;
-  color: rgba(225, 215, 195, 0.88);
+  color: rgba(244, 234, 211, 0.94);
 }
 
 .thesis-body p {
@@ -117,16 +117,16 @@ body {
 .thesis-body h2 {
   font-size: 1.5rem;
   font-weight: 400;
-  color: rgba(235, 225, 205, 0.9);
+  color: rgba(255, 242, 214, 0.95);
   margin-top: 3rem;
   margin-bottom: 1.25rem;
   letter-spacing: 0.01em;
 }
 
 .thesis-body blockquote {
-  border-left: 1px solid rgba(200, 160, 96, 0.3);
+  border-left: 1px solid rgba(242, 196, 109, 0.48);
   padding-left: 1.5rem;
   margin: 2rem 0;
   font-style: italic;
-  color: rgba(200, 185, 160, 0.7);
+  color: rgba(226, 207, 170, 0.86);
 }

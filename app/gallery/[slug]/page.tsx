@@ -23,7 +23,7 @@ export default function ThesisPage({ params }: PageProps) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1.2, ease: "easeOut" }}
-      style={{ minHeight: "100vh", background: "#0c0d12" }}
+      style={{ minHeight: "100vh", background: "#13141a" }}
     >
       {/* Subtle overhead lighting */}
       <div className="fixed inset-0 pointer-events-none" style={{ zIndex: 0 }} aria-hidden="true">
@@ -35,7 +35,7 @@ export default function ThesisPage({ params }: PageProps) {
             transform: "translateX(-50%)",
             width: "60%",
             height: "500px",
-            background: "radial-gradient(ellipse at 50% 0%, rgba(200, 160, 96, 0.055) 0%, transparent 70%)",
+            background: "radial-gradient(ellipse at 50% 0%, rgba(242, 196, 109, 0.1) 0%, transparent 70%)",
           }}
         />
       </div>
@@ -61,16 +61,16 @@ export default function ThesisPage({ params }: PageProps) {
                 fontSize: "0.6rem",
                 letterSpacing: "0.38em",
                 textTransform: "uppercase",
-                color: "rgba(175, 158, 125, 0.7)",
+                color: "rgba(205, 185, 145, 0.78)",
                 fontFamily: "var(--font-inter), sans-serif",
                 textDecoration: "none",
                 transition: "color 0.3s ease",
               }}
               onMouseEnter={(e) =>
-                ((e.currentTarget as HTMLAnchorElement).style.color = "rgba(210, 170, 105, 0.95)")
+                ((e.currentTarget as HTMLAnchorElement).style.color = "rgba(255, 213, 130, 0.98)")
               }
               onMouseLeave={(e) =>
-                ((e.currentTarget as HTMLAnchorElement).style.color = "rgba(175, 158, 125, 0.7)")
+                ((e.currentTarget as HTMLAnchorElement).style.color = "rgba(205, 185, 145, 0.78)")
               }
             >
               ← The Collection
@@ -88,16 +88,16 @@ export default function ThesisPage({ params }: PageProps) {
                 fontSize: "0.57rem",
                 letterSpacing: "0.38em",
                 textTransform: "uppercase",
-                color: "rgba(155, 140, 110, 0.55)",
+                color: "rgba(194, 174, 132, 0.68)",
                 fontFamily: "var(--font-inter), sans-serif",
                 textDecoration: "none",
                 transition: "color 0.3s ease",
               }}
               onMouseEnter={(e) =>
-                ((e.currentTarget as HTMLAnchorElement).style.color = "rgba(210, 170, 105, 0.8)")
+                ((e.currentTarget as HTMLAnchorElement).style.color = "rgba(242, 196, 109, 0.92)")
               }
               onMouseLeave={(e) =>
-                ((e.currentTarget as HTMLAnchorElement).style.color = "rgba(155, 140, 110, 0.55)")
+                ((e.currentTarget as HTMLAnchorElement).style.color = "rgba(194, 174, 132, 0.68)")
               }
             >
               George&apos;s Gallery
@@ -114,7 +114,7 @@ export default function ThesisPage({ params }: PageProps) {
             transition={{ delay: 0.35, duration: 1.1, ease: [0.25, 0.46, 0.45, 0.94] }}
             style={{
               height: "1px",
-              background: "linear-gradient(90deg, rgba(200, 160, 96, 0.4) 0%, rgba(200, 160, 96, 0.12) 50%, transparent 100%)",
+              background: "linear-gradient(90deg, rgba(242, 196, 109, 0.52) 0%, rgba(242, 196, 109, 0.18) 50%, transparent 100%)",
               marginBottom: "clamp(2.5rem, 5vw, 4rem)",
             }}
           />
@@ -130,7 +130,7 @@ export default function ThesisPage({ params }: PageProps) {
                   fontSize: "0.6rem",
                   letterSpacing: "0.45em",
                   textTransform: "uppercase",
-                  color: "rgba(210, 170, 105, 0.78)",
+                  color: "rgba(242, 196, 109, 0.92)",
                   fontFamily: "var(--font-inter), sans-serif",
                   marginBottom: "1.1rem",
                 }}
@@ -149,7 +149,7 @@ export default function ThesisPage({ params }: PageProps) {
                 fontWeight: 300,
                 fontStyle: "italic",
                 lineHeight: 1.08,
-                color: "rgba(242, 230, 205, 0.97)",
+                color: "rgba(255, 242, 214, 0.98)",
                 marginBottom: "clamp(1.5rem, 3vw, 2.5rem)",
                 letterSpacing: "0.005em",
               }}
@@ -173,7 +173,7 @@ export default function ThesisPage({ params }: PageProps) {
                 style={{
                   fontSize: "0.6rem",
                   letterSpacing: "0.28em",
-                  color: "rgba(175, 158, 128, 0.75)",
+                  color: "rgba(205, 185, 145, 0.82)",
                   fontFamily: "var(--font-inter), sans-serif",
                 }}
               >
@@ -186,7 +186,7 @@ export default function ThesisPage({ params }: PageProps) {
                     style={{
                       width: "1px",
                       height: "10px",
-                      background: "rgba(200, 160, 96, 0.3)",
+                      background: "rgba(242, 196, 109, 0.38)",
                       display: "inline-block",
                     }}
                   />
@@ -197,7 +197,7 @@ export default function ThesisPage({ params }: PageProps) {
                         style={{
                           fontSize: "0.57rem",
                           letterSpacing: "0.32em",
-                          color: "rgba(165, 148, 118, 0.65)",
+                          color: "rgba(194, 174, 132, 0.76)",
                           fontFamily: "var(--font-inter), sans-serif",
                           textTransform: "uppercase",
                         }}
@@ -218,7 +218,7 @@ export default function ThesisPage({ params }: PageProps) {
             transition={{ delay: 0.75, duration: 1.1, ease: "easeOut" }}
             style={{
               maxWidth: "680px",
-              borderTop: "1px solid rgba(200, 160, 96, 0.15)",
+              borderTop: "1px solid rgba(242, 196, 109, 0.22)",
               paddingTop: "clamp(2rem, 4vw, 3rem)",
             }}
           >
@@ -238,12 +238,12 @@ export default function ThesisPage({ params }: PageProps) {
               gap: "1.25rem",
             }}
           >
-            <div style={{ height: "1px", width: "40px", background: "rgba(200, 160, 96, 0.45)" }} />
+            <div style={{ height: "1px", width: "40px", background: "rgba(242, 196, 109, 0.58)" }} />
             <span
               style={{
                 fontSize: "0.55rem",
                 letterSpacing: "0.38em",
-                color: "rgba(200, 160, 96, 0.55)",
+                color: "rgba(242, 196, 109, 0.72)",
                 fontFamily: "var(--font-inter), sans-serif",
                 textTransform: "uppercase",
               }}
@@ -261,7 +261,7 @@ export default function ThesisPage({ params }: PageProps) {
               maxWidth: "680px",
               marginTop: "clamp(3rem, 5vw, 4.5rem)",
               paddingTop: "clamp(2rem, 4vw, 3rem)",
-              borderTop: "1px solid rgba(200, 160, 96, 0.1)",
+              borderTop: "1px solid rgba(242, 196, 109, 0.16)",
             }}
           >
             <Link
@@ -270,16 +270,16 @@ export default function ThesisPage({ params }: PageProps) {
                 fontSize: "0.6rem",
                 letterSpacing: "0.38em",
                 textTransform: "uppercase",
-                color: "rgba(175, 158, 125, 0.7)",
+                color: "rgba(205, 185, 145, 0.78)",
                 fontFamily: "var(--font-inter), sans-serif",
                 textDecoration: "none",
                 transition: "color 0.3s ease",
               }}
               onMouseEnter={(e) =>
-                ((e.currentTarget as HTMLAnchorElement).style.color = "rgba(210, 170, 105, 0.95)")
+                ((e.currentTarget as HTMLAnchorElement).style.color = "rgba(255, 213, 130, 0.98)")
               }
               onMouseLeave={(e) =>
-                ((e.currentTarget as HTMLAnchorElement).style.color = "rgba(175, 158, 125, 0.7)")
+                ((e.currentTarget as HTMLAnchorElement).style.color = "rgba(205, 185, 145, 0.78)")
               }
             >
               ← Return to the Collection

@@ -9,7 +9,7 @@ export default function MonetBackground() {
         className="absolute inset-0"
         style={{
           background:
-            "linear-gradient(180deg, #030508 0%, #060d1a 28%, #120905 52%, #060508 100%)",
+            "linear-gradient(180deg, #0a0d14 0%, #101a2a 28%, #23110a 52%, #111016 100%)",
         }}
       />
 
@@ -22,7 +22,7 @@ export default function MonetBackground() {
           width: "580px",
           height: "300px",
           background:
-            "radial-gradient(ellipse at center, rgba(185, 78, 18, 0.38) 0%, rgba(130, 44, 8, 0.18) 38%, rgba(70, 20, 4, 0.07) 65%, transparent 85%)",
+            "radial-gradient(ellipse at center, rgba(232, 124, 32, 0.5) 0%, rgba(178, 73, 14, 0.25) 38%, rgba(105, 38, 8, 0.1) 65%, transparent 85%)",
           filter: "blur(35px)",
           animation: "monet-pulse 9s ease-in-out infinite",
         }}
@@ -37,7 +37,7 @@ export default function MonetBackground() {
           width: "800px",
           height: "400px",
           background:
-            "radial-gradient(ellipse at 60% 55%, rgba(150, 55, 10, 0.14) 0%, rgba(80, 25, 4, 0.06) 50%, transparent 75%)",
+            "radial-gradient(ellipse at 60% 55%, rgba(218, 91, 18, 0.2) 0%, rgba(126, 42, 8, 0.1) 50%, transparent 75%)",
           filter: "blur(60px)",
           animation: "monet-glow 14s ease-in-out infinite 2s",
         }}
@@ -52,7 +52,7 @@ export default function MonetBackground() {
           width: "48px",
           height: "48px",
           background:
-            "radial-gradient(circle, rgba(230, 135, 45, 0.9) 0%, rgba(195, 82, 18, 0.5) 55%, transparent 100%)",
+            "radial-gradient(circle, rgba(255, 174, 72, 0.96) 0%, rgba(224, 110, 28, 0.62) 55%, transparent 100%)",
           filter: "blur(5px)",
           animation: "monet-glow 7s ease-in-out infinite 0.5s",
         }}
@@ -66,7 +66,7 @@ export default function MonetBackground() {
           height: "90px",
           marginTop: "-45px",
           background:
-            "linear-gradient(90deg, transparent 0%, rgba(140, 58, 12, 0.05) 15%, rgba(190, 82, 18, 0.14) 38%, rgba(215, 102, 28, 0.22) 60%, rgba(160, 62, 14, 0.1) 78%, transparent 100%)",
+            "linear-gradient(90deg, transparent 0%, rgba(176, 78, 18, 0.08) 15%, rgba(226, 112, 30, 0.21) 38%, rgba(245, 138, 42, 0.3) 60%, rgba(198, 82, 22, 0.16) 78%, transparent 100%)",
           filter: "blur(18px)",
           animation: "monet-drift 22s ease-in-out infinite",
         }}
@@ -77,7 +77,7 @@ export default function MonetBackground() {
         className="absolute inset-0"
         style={{
           background:
-            "radial-gradient(ellipse at 10% 48%, rgba(12, 18, 32, 0.65) 0%, rgba(8, 12, 22, 0.3) 35%, transparent 58%)",
+            "radial-gradient(ellipse at 10% 48%, rgba(22, 32, 52, 0.58) 0%, rgba(15, 22, 36, 0.28) 35%, transparent 58%)",
           animation: "monet-fog 28s ease-in-out infinite",
         }}
       />
@@ -87,7 +87,7 @@ export default function MonetBackground() {
         className="absolute inset-0"
         style={{
           background:
-            "radial-gradient(ellipse at 92% 44%, rgba(10, 15, 28, 0.55) 0%, rgba(6, 10, 18, 0.25) 32%, transparent 55%)",
+            "radial-gradient(ellipse at 92% 44%, rgba(20, 28, 46, 0.5) 0%, rgba(14, 20, 32, 0.24) 32%, transparent 55%)",
           animation: "monet-fog 35s ease-in-out infinite reverse",
         }}
       />
@@ -98,7 +98,7 @@ export default function MonetBackground() {
         style={{
           height: "50%",
           background:
-            "linear-gradient(180deg, transparent 0%, rgba(4, 5, 10, 0.65) 35%, #020306 100%)",
+            "linear-gradient(180deg, transparent 0%, rgba(12, 13, 20, 0.56) 35%, #0a0b10 100%)",
         }}
       />
 
@@ -144,7 +144,7 @@ export default function MonetBackground() {
           top: "49%",
           height: "1px",
           background:
-            "linear-gradient(90deg, transparent 0%, rgba(180, 95, 20, 0.12) 20%, rgba(220, 128, 35, 0.4) 42%, rgba(235, 140, 45, 0.48) 58%, rgba(180, 95, 20, 0.12) 80%, transparent 100%)",
+            "linear-gradient(90deg, transparent 0%, rgba(215, 122, 28, 0.18) 20%, rgba(246, 160, 50, 0.55) 42%, rgba(255, 178, 68, 0.62) 58%, rgba(214, 116, 28, 0.18) 80%, transparent 100%)",
           filter: "blur(1.5px)",
           animation: "monet-glow 11s ease-in-out infinite 1s",
         }}
@@ -159,7 +159,7 @@ export default function MonetBackground() {
         preserveAspectRatio="none"
         aria-hidden="true"
       >
-        <g opacity="0.1" stroke="rgba(60,75,100,1)" fill="none">
+        <g opacity="0.16" stroke="rgba(86,104,132,1)" fill="none">
           {/* Left mast */}
           <line x1="205" y1="4" x2="205" y2="62" strokeWidth="0.8" />
           <line x1="190" y1="19" x2="220" y2="19" strokeWidth="0.5" />
@@ -175,7 +175,7 @@ export default function MonetBackground() {
           <line x1="1165" y1="25" x2="1195" y2="25" strokeWidth="0.5" />
         </g>
         {/* Hull shapes */}
-        <g opacity="0.08" fill="rgba(18,22,35,1)">
+        <g opacity="0.12" fill="rgba(28,34,50,1)">
           <ellipse cx="700" cy="62" rx="90" ry="9" />
           <ellipse cx="205" cy="62" rx="55" ry="7" />
           <ellipse cx="1180" cy="62" rx="60" ry="7" />
@@ -187,7 +187,7 @@ export default function MonetBackground() {
         className="absolute inset-0"
         style={{
           background:
-            "radial-gradient(ellipse at 50% 50%, transparent 38%, rgba(2, 3, 6, 0.72) 100%)",
+            "radial-gradient(ellipse at 50% 50%, transparent 38%, rgba(8, 9, 14, 0.58) 100%)",
         }}
       />
 

@@ -20,7 +20,7 @@ export default function GalleryPage() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1.4, ease: "easeOut" }}
-      style={{ minHeight: "100vh", background: "#0c0d12" }}
+      style={{ minHeight: "100vh", background: "#13141a" }}
     >
       {/* Subtle gallery atmosphere */}
       <div className="fixed inset-0 pointer-events-none" style={{ zIndex: 0 }} aria-hidden="true">
@@ -32,7 +32,7 @@ export default function GalleryPage() {
             transform: "translateX(-50%)",
             width: "80%",
             height: "500px",
-            background: "radial-gradient(ellipse at 50% 0%, rgba(200, 160, 96, 0.07) 0%, transparent 65%)",
+            background: "radial-gradient(ellipse at 50% 0%, rgba(242, 196, 109, 0.11) 0%, transparent 65%)",
           }}
         />
       </div>
@@ -59,16 +59,16 @@ export default function GalleryPage() {
                 fontSize: "0.6rem",
                 letterSpacing: "0.38em",
                 textTransform: "uppercase",
-                color: "rgba(175, 158, 125, 0.7)",
+                color: "rgba(205, 185, 145, 0.78)",
                 fontFamily: "var(--font-inter), sans-serif",
                 textDecoration: "none",
                 transition: "color 0.3s ease",
               }}
               onMouseEnter={(e) =>
-                ((e.currentTarget as HTMLAnchorElement).style.color = "rgba(210, 170, 105, 0.95)")
+                ((e.currentTarget as HTMLAnchorElement).style.color = "rgba(255, 213, 130, 0.98)")
               }
               onMouseLeave={(e) =>
-                ((e.currentTarget as HTMLAnchorElement).style.color = "rgba(175, 158, 125, 0.7)")
+                ((e.currentTarget as HTMLAnchorElement).style.color = "rgba(205, 185, 145, 0.78)")
               }
             >
               ← George&apos;s Gallery
@@ -82,7 +82,7 @@ export default function GalleryPage() {
             transition={{ delay: 0.5, duration: 1.2, ease: [0.25, 0.46, 0.45, 0.94] }}
             style={{
               height: "1px",
-              background: "linear-gradient(90deg, rgba(200, 160, 96, 0.35) 0%, rgba(200, 160, 96, 0.1) 60%, transparent 100%)",
+              background: "linear-gradient(90deg, rgba(242, 196, 109, 0.48) 0%, rgba(242, 196, 109, 0.16) 60%, transparent 100%)",
               marginBottom: "clamp(2rem, 4vw, 3.5rem)",
             }}
           />
@@ -96,7 +96,7 @@ export default function GalleryPage() {
                 fontSize: "0.6rem",
                 letterSpacing: "0.46em",
                 textTransform: "uppercase",
-                color: "rgba(210, 170, 105, 0.75)",
+                color: "rgba(242, 196, 109, 0.92)",
                 fontFamily: "var(--font-inter), sans-serif",
                 marginBottom: "1rem",
               }}
@@ -113,7 +113,7 @@ export default function GalleryPage() {
                 fontWeight: 300,
                 fontStyle: "italic",
                 lineHeight: 1,
-                color: "rgba(242, 230, 205, 0.96)",
+                color: "rgba(255, 242, 214, 0.98)",
                 marginBottom: "clamp(1.8rem, 3.5vw, 2.6rem)",
               }}
             >
@@ -124,7 +124,7 @@ export default function GalleryPage() {
                 display: "grid",
                 gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 320px), 1fr))",
                 gap: "1px",
-                background: "rgba(200, 160, 96, 0.12)",
+                background: "rgba(242, 196, 109, 0.18)",
               }}
             >
               {regions.map((region, i) => (
@@ -148,7 +148,7 @@ export default function GalleryPage() {
               fontSize: "0.6rem",
               letterSpacing: "0.46em",
               textTransform: "uppercase",
-              color: "rgba(210, 170, 105, 0.75)",
+              color: "rgba(242, 196, 109, 0.92)",
               fontFamily: "var(--font-inter), sans-serif",
               marginBottom: "1.1rem",
             }}
@@ -167,7 +167,7 @@ export default function GalleryPage() {
               fontWeight: 300,
               fontStyle: "italic",
               lineHeight: 1,
-              color: "rgba(242, 230, 205, 0.96)",
+              color: "rgba(255, 242, 214, 0.98)",
               marginBottom: "1.25rem",
             }}
           >
@@ -182,7 +182,7 @@ export default function GalleryPage() {
             style={{
               fontSize: "0.6rem",
               letterSpacing: "0.28em",
-              color: "rgba(175, 158, 130, 0.65)",
+              color: "rgba(205, 185, 145, 0.78)",
               fontFamily: "var(--font-inter), sans-serif",
               marginBottom: "clamp(3rem, 6vw, 5rem)",
             }}
@@ -207,7 +207,7 @@ export default function GalleryPage() {
             transition={{ delay: 0.8, duration: 1.4, ease: [0.25, 0.46, 0.45, 0.94] }}
             style={{
               height: "1px",
-              background: "linear-gradient(90deg, rgba(200, 160, 96, 0.25) 0%, rgba(200, 160, 96, 0.08) 70%, transparent 100%)",
+              background: "linear-gradient(90deg, rgba(242, 196, 109, 0.36) 0%, rgba(242, 196, 109, 0.13) 70%, transparent 100%)",
               marginBottom: "clamp(2rem, 4vw, 3.5rem)",
             }}
           />
@@ -218,7 +218,7 @@ export default function GalleryPage() {
               display: "grid",
               gridTemplateColumns: "repeat(auto-fill, minmax(min(100%, 380px), 1fr))",
               gap: "1px",
-              background: "rgba(200, 160, 96, 0.1)",
+              background: "rgba(242, 196, 109, 0.16)",
             }}
           >
             {theses.map((thesis, i) => (
@@ -233,7 +233,7 @@ export default function GalleryPage() {
             maxWidth: "1400px",
             margin: "0 auto",
             padding: "2.5rem clamp(1.5rem, 6vw, 5rem) 4rem",
-            borderTop: "1px solid rgba(200, 160, 96, 0.1)",
+            borderTop: "1px solid rgba(242, 196, 109, 0.16)",
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
@@ -244,7 +244,7 @@ export default function GalleryPage() {
               fontSize: "0.55rem",
               letterSpacing: "0.38em",
               textTransform: "uppercase",
-              color: "rgba(155, 140, 110, 0.55)",
+              color: "rgba(194, 174, 132, 0.68)",
               fontFamily: "var(--font-inter), sans-serif",
             }}
           >
@@ -254,7 +254,7 @@ export default function GalleryPage() {
             style={{
               fontSize: "0.55rem",
               letterSpacing: "0.28em",
-              color: "rgba(140, 125, 98, 0.45)",
+              color: "rgba(174, 155, 118, 0.58)",
               fontFamily: "var(--font-inter), sans-serif",
             }}
           >
