@@ -1,11 +1,19 @@
 export type RegionKey = "us" | "eu" | "asia";
 
+export interface DocumentItem {
+  id: string;
+  type: "file" | "link";
+  name: string;
+  url?: string;
+  fileSize?: number;
+  addedAt: number;
+}
+
 export interface PaintingSlot {
   id: number;
   ticker: string;
   name: string;
-  pdfName?: string;
-  pdfSize?: number;
+  documents?: DocumentItem[];
 }
 
 export const REGION_SLOT_COUNTS: Record<RegionKey, number> = {
@@ -36,7 +44,6 @@ export function getSlots(region: RegionKey): PaintingSlot[] {
     if (!raw) return emptySlots(count);
     const saved: PaintingSlot[] = JSON.parse(raw);
     if (saved.length >= count) return saved;
-    // Pad with empty slots to reach the target count, preserving saved data
     const extra = Array.from({ length: count - saved.length }, (_, i) => ({
       id: saved.length + i + 1,
       ticker: "",
@@ -54,4 +61,8 @@ export function saveSlots(region: RegionKey, slots: PaintingSlot[]): void {
   } catch {
     /* silently fail in SSR or private-mode */
   }
+}
+
+export function makeDocId(): string {
+  return Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
 }
