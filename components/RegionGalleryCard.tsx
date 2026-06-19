@@ -142,7 +142,7 @@ export default function RegionGalleryCard({ region, title, label, index = 0 }: R
               fontSize: "0.56rem",
               letterSpacing: "0.42em",
               textTransform: "uppercase",
-              color: "rgba(242, 196, 109, 0.92)",
+              color: "rgba(242, 196, 109, 1)",
               fontFamily: "var(--font-inter), sans-serif",
               marginBottom: "0.7rem",
             }}

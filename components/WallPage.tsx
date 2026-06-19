@@ -115,7 +115,7 @@ export default function WallPage({ region }: Props) {
                 fontSize: "0.58rem",
                 letterSpacing: "0.36em",
                 textTransform: "uppercase",
-                color: "rgba(200, 160, 96, 0.4)",
+                color: "rgba(200, 160, 96, 0.72)",
                 fontFamily: "var(--font-inter), sans-serif",
               }}
             >
@@ -145,7 +145,7 @@ export default function WallPage({ region }: Props) {
               fontSize: "0.58rem",
               letterSpacing: "0.46em",
               textTransform: "uppercase",
-              color: "rgba(210, 170, 105, 0.72)",
+              color: "rgba(242, 196, 109, 0.96)",
               fontFamily: "var(--font-inter), sans-serif",
               marginBottom: "0.9rem",
             }}

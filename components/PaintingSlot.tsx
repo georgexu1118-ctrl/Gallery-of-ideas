@@ -68,7 +68,7 @@ export default function PaintingSlotComp({ slot, index, onSave }: Props) {
           left: "0.7rem",
           fontSize: "0.46rem",
           letterSpacing: "0.28em",
-          color: "rgba(200, 160, 96, 0.22)",
+          color: "rgba(200, 160, 96, 0.52)",
           fontFamily: "var(--font-inter), sans-serif",
           zIndex: 2,
           pointerEvents: "none",
@@ -248,7 +248,7 @@ export default function PaintingSlotComp({ slot, index, onSave }: Props) {
               bottom: "0.7rem",
               fontSize: "0.42rem",
               letterSpacing: "0.3em",
-              color: "rgba(200, 160, 96, 0.52)",
+              color: "rgba(242, 196, 109, 0.85)",
               fontFamily: "var(--font-inter), sans-serif",
               textTransform: "uppercase",
             }}

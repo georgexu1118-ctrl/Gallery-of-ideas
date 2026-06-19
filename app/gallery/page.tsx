@@ -96,7 +96,7 @@ export default function GalleryPage() {
                 fontSize: "0.6rem",
                 letterSpacing: "0.46em",
                 textTransform: "uppercase",
-                color: "rgba(242, 196, 109, 0.92)",
+                color: "rgba(242, 196, 109, 1)",
                 fontFamily: "var(--font-inter), sans-serif",
                 marginBottom: "1rem",
               }}
