@@ -4,6 +4,8 @@ export interface PaintingSlot {
   id: number;
   ticker: string;
   name: string;
+  pdfName?: string;
+  pdfSize?: number;
 }
 
 export const REGION_SLOT_COUNTS: Record<RegionKey, number> = {

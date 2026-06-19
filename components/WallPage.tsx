@@ -225,6 +225,7 @@ export default function WallPage({ region }: Props) {
                   key={slot.id}
                   slot={slot}
                   index={i}
+                  region={region}
                   onSave={handleSave}
                 />
               ))}
