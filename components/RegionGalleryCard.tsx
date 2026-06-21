@@ -120,8 +120,8 @@ export default function RegionGalleryCard({ region, title, label, index = 0 }: R
             position: "relative",
             minHeight: "190px",
             overflow: "hidden",
-            background: "linear-gradient(135deg, rgba(25, 26, 33, 0.98) 0%, rgba(18, 19, 26, 0.98) 100%)",
-            border: "1px solid rgba(242, 196, 109, 0.22)",
+            background: "linear-gradient(135deg, rgba(34, 36, 46, 0.98) 0%, rgba(26, 28, 37, 0.98) 100%)",
+            border: "1px solid rgba(255, 215, 135, 0.3)",
             padding: "clamp(1.4rem, 2.8vw, 2.25rem)",
             display: "grid",
             gridTemplateColumns: "minmax(0, 0.78fr) minmax(132px, 0.72fr)",
@@ -136,7 +136,7 @@ export default function RegionGalleryCard({ region, title, label, index = 0 }: R
             style={{
               position: "absolute",
               inset: 0,
-              background: "radial-gradient(ellipse at 82% 35%, rgba(242, 196, 109, 0.24) 0%, transparent 58%)",
+              background: "radial-gradient(ellipse at 82% 35%, rgba(255, 215, 135, 0.3) 0%, transparent 60%)",
               pointerEvents: "none",
             }}
           />
@@ -146,7 +146,7 @@ export default function RegionGalleryCard({ region, title, label, index = 0 }: R
               variants={line}
               style={{
                 height: "1px",
-                background: "rgba(242, 196, 109, 0.84)",
+                background: "rgba(255, 215, 135, 0.94)",
                 marginBottom: "1.35rem",
               }}
             />
@@ -155,7 +155,7 @@ export default function RegionGalleryCard({ region, title, label, index = 0 }: R
                 fontSize: "0.56rem",
                 letterSpacing: "0.42em",
                 textTransform: "uppercase",
-                color: "rgba(242, 196, 109, 1)",
+                color: "rgba(255, 215, 135, 1)",
                 fontFamily: "var(--font-inter), sans-serif",
                 marginBottom: "0.7rem",
               }}
@@ -180,7 +180,7 @@ export default function RegionGalleryCard({ region, title, label, index = 0 }: R
                 fontSize: "0.55rem",
                 letterSpacing: "0.34em",
                 textTransform: "uppercase",
-                color: "rgba(194, 174, 132, 0.72)",
+                color: "rgba(220, 202, 164, 0.82)",
                 fontFamily: "var(--font-inter), sans-serif",
               }}
             >

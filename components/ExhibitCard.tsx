@@ -47,9 +47,9 @@ export default function ExhibitCard({ thesis, index = 0 }: ExhibitCardProps) {
           initial="rest"
           whileHover="hover"
           style={{
-            background: "#181920",
+            background: "#20222c",
             padding: "clamp(2rem, 4vw, 3rem)",
-            border: "1px solid rgba(242, 196, 109, 0.2)",
+            border: "1px solid rgba(255, 215, 135, 0.28)",
           }}
         >
           {/* Ambient hover glow */}
@@ -57,8 +57,8 @@ export default function ExhibitCard({ thesis, index = 0 }: ExhibitCardProps) {
             variants={overlay}
             className="absolute inset-0 pointer-events-none"
             style={{
-              background: "radial-gradient(ellipse at 50% 0%, rgba(242, 196, 109, 0.12) 0%, transparent 70%)",
-              boxShadow: "inset 0 0 0 1px rgba(242, 196, 109, 0.36)",
+              background: "radial-gradient(ellipse at 50% 0%, rgba(255, 215, 135, 0.16) 0%, transparent 70%)",
+              boxShadow: "inset 0 0 0 1px rgba(255, 215, 135, 0.42)",
             }}
           />
 
@@ -68,7 +68,7 @@ export default function ExhibitCard({ thesis, index = 0 }: ExhibitCardProps) {
             className="relative z-10 mb-8"
             style={{
               height: "1px",
-              background: "rgba(242, 196, 109, 0.82)",
+              background: "rgba(255, 215, 135, 0.92)",
             }}
           />
 
@@ -80,7 +80,7 @@ export default function ExhibitCard({ thesis, index = 0 }: ExhibitCardProps) {
                 fontSize: "0.6rem",
                 letterSpacing: "0.42em",
                 textTransform: "uppercase",
-                color: "rgba(242, 196, 109, 1)",
+                color: "rgba(255, 215, 135, 1)",
                 fontFamily: "var(--font-inter), sans-serif",
                 marginBottom: "0.875rem",
               }}
@@ -111,7 +111,7 @@ export default function ExhibitCard({ thesis, index = 0 }: ExhibitCardProps) {
             style={{
               fontSize: "0.6rem",
               letterSpacing: "0.28em",
-              color: "rgba(205, 185, 145, 0.78)",
+              color: "rgba(225, 207, 170, 0.86)",
               fontFamily: "var(--font-inter), sans-serif",
               marginBottom: "1.5rem",
             }}
@@ -127,7 +127,7 @@ export default function ExhibitCard({ thesis, index = 0 }: ExhibitCardProps) {
               fontSize: "1rem",
               fontStyle: "italic",
               lineHeight: 1.75,
-              color: "rgba(221, 205, 171, 0.9)",
+              color: "rgba(239, 224, 194, 0.95)",
             }}
           >
             &ldquo;{thesis.excerpt}&rdquo;
@@ -143,7 +143,7 @@ export default function ExhibitCard({ thesis, index = 0 }: ExhibitCardProps) {
                 fontSize: "0.58rem",
                 letterSpacing: "0.4em",
                 textTransform: "uppercase",
-                color: "rgba(242, 196, 109, 0.96)",
+                color: "rgba(255, 215, 135, 1)",
                 fontFamily: "var(--font-inter), sans-serif",
               }}
             >
@@ -154,7 +154,7 @@ export default function ExhibitCard({ thesis, index = 0 }: ExhibitCardProps) {
               height="7"
               viewBox="0 0 13 7"
               fill="none"
-              style={{ color: "rgba(242, 196, 109, 0.96)" }}
+              style={{ color: "rgba(255, 215, 135, 1)" }}
             >
               <path d="M0 3.5H11M8.5 1L11 3.5L8.5 6" stroke="currentColor" strokeWidth="0.7" />
             </svg>
