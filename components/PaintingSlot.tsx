@@ -82,8 +82,13 @@ export default function PaintingSlotComp({ slot, index, region, onSave }: Props)
   const tickerRef     = useRef<HTMLInputElement>(null);
   const fileRef       = useRef<HTMLInputElement>(null);
   const urlRef        = useRef<HTMLInputElement>(null);
+  const cardRef       = useRef<HTMLDivElement>(null);
   const skipFlipRef   = useRef(false);  // guards against Framer Motion native listener racing
   const clickTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const editingRef    = useRef(editing);
+  const flippedRef    = useRef(flipped);
+  useEffect(() => { editingRef.current = editing; }, [editing]);
+  useEffect(() => { flippedRef.current = flipped; }, [flipped]);
 
   const docs: DocumentItem[] = slot.documents ?? [];
   const isEmpty = !slot.ticker;
@@ -98,6 +103,21 @@ export default function PaintingSlotComp({ slot, index, region, onSave }: Props)
 
   // Clean up pending click timer on unmount
   useEffect(() => () => { if (clickTimerRef.current) clearTimeout(clickTimerRef.current); }, []);
+
+  // Native dblclick listener — Framer Motion can swallow React's onDoubleClick prop
+  useEffect(() => {
+    const el = cardRef.current;
+    if (!el) return;
+    function onDblClick(e: MouseEvent) {
+      if (editingRef.current) return;
+      if (clickTimerRef.current) { clearTimeout(clickTimerRef.current); clickTimerRef.current = null; }
+      e.stopPropagation();
+      skipFlipRef.current = true;
+      setFlipped((f) => !f);
+    }
+    el.addEventListener("dblclick", onDblClick);
+    return () => el.removeEventListener("dblclick", onDblClick);
+  }, []);
 
   // Reset add form when flipping back
   useEffect(() => {
@@ -129,16 +149,7 @@ export default function PaintingSlotComp({ slot, index, region, onSave }: Props)
     }, 220);
   }
 
-  function handleCardDblClick(e: React.MouseEvent) {
-    if (editing) return;
-    if (clickTimerRef.current) { clearTimeout(clickTimerRef.current); clickTimerRef.current = null; }
-    e.stopPropagation();
-    try { e.nativeEvent.stopImmediatePropagation(); } catch {}
-    skipFlipRef.current = true;
-    setFlipped((f) => !f);
-  }
-
-  function startEdit(e?: React.MouseEvent) {
+function startEdit(e?: React.MouseEvent) {
     if (e) {
       e.stopPropagation();
       // Also stop native listeners (Framer Motion bypasses React synthetic events)
@@ -259,8 +270,8 @@ export default function PaintingSlotComp({ slot, index, region, onSave }: Props)
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.08 + index * 0.045, duration: 0.7,
         ease: [0.25, 0.46, 0.45, 0.94] as [number, number, number, number] }}
+      ref={cardRef}
       onClick={!editing ? handleCardClick : undefined}
-      onDoubleClick={!editing ? handleCardDblClick : undefined}
       whileHover={!editing && !flipped ? { y: -3, transition: { duration: 0.25 } } : {}}
       style={{ position: "relative", aspectRatio: "3/4", cursor: editing ? "default" : "pointer",
         boxShadow: frameShadow, perspective: "1000px" }}
