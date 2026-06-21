@@ -186,7 +186,7 @@ export default function WallPage({ region }: Props) {
           >
             Wall I&nbsp;&nbsp;·&nbsp;&nbsp;
             {mounted ? `${filled} of ${slotCount} positions filled` : `${slotCount} positions`}
-            &nbsp;&nbsp;·&nbsp;&nbsp;Click any frame to add a ticker
+            &nbsp;&nbsp;·&nbsp;&nbsp;Click to edit · double-click to flip
           </motion.p>
         </header>
 

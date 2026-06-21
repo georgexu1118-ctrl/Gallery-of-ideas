@@ -79,17 +79,25 @@ export default function PaintingSlotComp({ slot, index, region, onSave }: Props)
   const [linkLabel, setLinkLabel] = useState("");
   const [urlError, setUrlError] = useState(false);
 
-  const tickerRef  = useRef<HTMLInputElement>(null);
-  const fileRef    = useRef<HTMLInputElement>(null);
-  const urlRef     = useRef<HTMLInputElement>(null);
+  const tickerRef     = useRef<HTMLInputElement>(null);
+  const fileRef       = useRef<HTMLInputElement>(null);
+  const urlRef        = useRef<HTMLInputElement>(null);
+  const skipFlipRef   = useRef(false);  // guards against Framer Motion native listener racing
+  const clickTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const docs: DocumentItem[] = slot.documents ?? [];
   const isEmpty = !slot.ticker;
 
+  // Only sync from props when NOT actively editing (prevents clobbering in-progress edits)
   useEffect(() => {
-    setTicker(slot.ticker);
-    setCompanyName(slot.name);
-  }, [slot.ticker, slot.name]);
+    if (!editing) {
+      setTicker(slot.ticker);
+      setCompanyName(slot.name);
+    }
+  }, [slot.ticker, slot.name, editing]);
+
+  // Clean up pending click timer on unmount
+  useEffect(() => () => { if (clickTimerRef.current) clearTimeout(clickTimerRef.current); }, []);
 
   // Reset add form when flipping back
   useEffect(() => {
@@ -112,23 +120,56 @@ export default function PaintingSlotComp({ slot, index, region, onSave }: Props)
 
   function handleCardClick() {
     if (editing) return;
+    if (skipFlipRef.current) { skipFlipRef.current = false; return; }
+    // Delay so a double-click can cancel before edit opens
+    if (clickTimerRef.current) clearTimeout(clickTimerRef.current);
+    clickTimerRef.current = setTimeout(() => {
+      clickTimerRef.current = null;
+      startEdit();
+    }, 220);
+  }
+
+  function handleCardDblClick(e: React.MouseEvent) {
+    if (editing) return;
+    if (clickTimerRef.current) { clearTimeout(clickTimerRef.current); clickTimerRef.current = null; }
+    e.stopPropagation();
+    try { e.nativeEvent.stopImmediatePropagation(); } catch {}
+    skipFlipRef.current = true;
     setFlipped((f) => !f);
   }
 
   function startEdit(e?: React.MouseEvent) {
-    e?.stopPropagation();
+    if (e) {
+      e.stopPropagation();
+      // Also stop native listeners (Framer Motion bypasses React synthetic events)
+      try { e.nativeEvent.stopImmediatePropagation(); } catch {}
+    }
+    skipFlipRef.current = true;   // final fallback if native stop didn't work
     setFlipped(false);
     setEditing(true);
     setTimeout(() => tickerRef.current?.focus(), 40);
   }
 
   function commit() {
+    const t = ticker.trim().toUpperCase();
     setEditing(false);
-    onSave({ ...slot, ticker: ticker.trim().toUpperCase(), name: companyName.trim() });
+    // Always preserve documents; only overwrite ticker/name if ticker is non-empty
+    onSave({
+      ...slot,
+      ticker: t || slot.ticker,        // keep existing ticker if input was cleared
+      name:   t ? companyName.trim() : slot.name,
+    });
+  }
+
+  function cancelEdit() {
+    setEditing(false);
+    setTicker(slot.ticker);
+    setCompanyName(slot.name);
   }
 
   function handleKey(e: React.KeyboardEvent) {
     if (e.key === "Enter") commit();
+    if (e.key === "Escape") cancelEdit();
   }
 
   // ── Back face actions ────────────────────────────────────────────────
@@ -219,6 +260,7 @@ export default function PaintingSlotComp({ slot, index, region, onSave }: Props)
       transition={{ delay: 0.08 + index * 0.045, duration: 0.7,
         ease: [0.25, 0.46, 0.45, 0.94] as [number, number, number, number] }}
       onClick={!editing ? handleCardClick : undefined}
+      onDoubleClick={!editing ? handleCardDblClick : undefined}
       whileHover={!editing && !flipped ? { y: -3, transition: { duration: 0.25 } } : {}}
       style={{ position: "relative", aspectRatio: "3/4", cursor: editing ? "default" : "pointer",
         boxShadow: frameShadow, perspective: "1000px" }}
@@ -243,28 +285,42 @@ export default function PaintingSlotComp({ slot, index, region, onSave }: Props)
             {String(index + 1).padStart(2, "0")}
           </span>
 
-          {/* Doc count badge */}
+          {/* Doc count badge — click to open research folder */}
           {docs.length > 0 && !editing && (
-            <span style={{ position: "absolute", top: "0.55rem", right: "0.65rem",
-              minWidth: "14px", height: "14px", borderRadius: "7px",
-              background: "rgba(200,160,96,0.14)", border: "1px solid rgba(200,160,96,0.32)",
-              display: "flex", alignItems: "center", justifyContent: "center",
-              fontSize: "0.38rem", letterSpacing: "0.06em", color: "rgba(242,196,109,0.8)",
-              fontFamily: "var(--font-inter), sans-serif", pointerEvents: "none",
-              padding: "0 3px" }}>
+            <button
+              onMouseDown={(e) => {
+                e.stopPropagation();
+                try { e.nativeEvent.stopImmediatePropagation(); } catch {}
+              }}
+              onClick={(e) => {
+                e.stopPropagation();
+                try { e.nativeEvent.stopImmediatePropagation(); } catch {}
+                skipFlipRef.current = true;
+                setFlipped(true);
+              }}
+              title="Open research folder"
+              onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(200,160,96,0.28)"; }}
+              onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(200,160,96,0.14)"; }}
+              style={{ position: "absolute", top: "0.55rem", right: "0.65rem",
+                minWidth: "14px", height: "14px", borderRadius: "7px",
+                background: "rgba(200,160,96,0.14)", border: "1px solid rgba(200,160,96,0.32)",
+                display: "flex", alignItems: "center", justifyContent: "center",
+                fontSize: "0.38rem", letterSpacing: "0.06em", color: "rgba(242,196,109,0.8)",
+                fontFamily: "var(--font-inter), sans-serif",
+                padding: "0 3px", cursor: "pointer", zIndex: 4, transition: "background 0.15s" }}>
               {docs.length}
-            </span>
+            </button>
           )}
 
           {/* Edit mode */}
           {editing ? (
             <div
-              onBlur={(e) => { if (!e.currentTarget.contains(e.relatedTarget as Node)) commit(); }}
               style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column",
-                alignItems: "center", justifyContent: "center", padding: "1.5rem", gap: "1rem" }}>
+                alignItems: "center", justifyContent: "center", padding: "1.5rem", gap: "0.85rem" }}>
               <input ref={tickerRef} value={ticker}
                 onChange={(e) => setTicker(e.target.value.toUpperCase())}
                 onKeyDown={handleKey} placeholder="TICKER" maxLength={10}
+                onClick={(e) => e.stopPropagation()}
                 style={{ ...inputBase, borderBottom: "1px solid rgba(200,160,96,0.4)",
                   textAlign: "center",
                   fontFamily: 'var(--font-cormorant),"Cormorant Garamond",Georgia,serif',
@@ -273,14 +329,45 @@ export default function PaintingSlotComp({ slot, index, region, onSave }: Props)
                   paddingBottom: "0.35rem" }} />
               <input value={companyName} onChange={(e) => setCompanyName(e.target.value)}
                 onKeyDown={handleKey} placeholder="Company name"
+                onClick={(e) => e.stopPropagation()}
                 style={{ ...inputBase, borderBottom: "1px solid rgba(200,160,96,0.15)",
                   textAlign: "center", fontSize: "0.58rem", letterSpacing: "0.2em",
                   color: "rgba(175,158,128,0.72)", paddingBottom: "0.25rem" }} />
-              <p style={{ fontSize: "0.44rem", letterSpacing: "0.28em",
-                color: "rgba(140,125,95,0.38)", fontFamily: "var(--font-inter),sans-serif",
-                textTransform: "uppercase", textAlign: "center" }}>
-                Enter to save
-              </p>
+              {/* Save / Cancel */}
+              <div style={{ display: "flex", gap: "0.4rem", marginTop: "0.2rem" }}>
+                <button
+                  onClick={(e) => { e.stopPropagation(); commit(); }}
+                  onMouseEnter={(e) => {
+                    const el = e.currentTarget as HTMLButtonElement;
+                    el.style.background = "rgba(200,160,96,0.22)";
+                    el.style.borderColor = "rgba(242,196,109,0.6)";
+                  }}
+                  onMouseLeave={(e) => {
+                    const el = e.currentTarget as HTMLButtonElement;
+                    el.style.background = "rgba(200,160,96,0.1)";
+                    el.style.borderColor = "rgba(200,160,96,0.38)";
+                  }}
+                  style={{ background: "rgba(200,160,96,0.1)",
+                    border: "1px solid rgba(200,160,96,0.38)",
+                    color: "rgba(242,196,109,0.92)", fontSize: "0.42rem",
+                    letterSpacing: "0.28em", textTransform: "uppercase",
+                    fontFamily: "var(--font-inter),sans-serif",
+                    padding: "0.32rem 0.75rem", cursor: "pointer", transition: "all 0.18s" }}>
+                  Save
+                </button>
+                <button
+                  onClick={(e) => { e.stopPropagation(); cancelEdit(); }}
+                  onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.color = "rgba(175,158,128,0.85)"; }}
+                  onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.color = "rgba(155,140,112,0.45)"; }}
+                  style={{ background: "transparent",
+                    border: "1px solid rgba(200,160,96,0.14)",
+                    color: "rgba(155,140,112,0.45)", fontSize: "0.42rem",
+                    letterSpacing: "0.28em", textTransform: "uppercase",
+                    fontFamily: "var(--font-inter),sans-serif",
+                    padding: "0.32rem 0.55rem", cursor: "pointer", transition: "color 0.18s" }}>
+                  Cancel
+                </button>
+              </div>
             </div>
 
           ) : isEmpty ? (
@@ -320,14 +407,6 @@ export default function PaintingSlotComp({ slot, index, region, onSave }: Props)
                   {slot.name}
                 </span>
               )}
-              <motion.span initial={{ opacity: 0 }} whileHover={{ opacity: 1 }}
-                onClick={(e) => startEdit(e)}
-                style={{ position: "absolute", bottom: "0.7rem", fontSize: "0.42rem",
-                  letterSpacing: "0.3em", color: "rgba(242,196,109,0.85)",
-                  fontFamily: "var(--font-inter),sans-serif", textTransform: "uppercase",
-                  cursor: "pointer", zIndex: 3 }}>
-                Edit
-              </motion.span>
             </div>
           )}
         </div>
