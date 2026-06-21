@@ -56,7 +56,7 @@ export default function ThesisPage({ params }: PageProps) {
             transition={{ delay: 0.2, duration: 0.9 }}
           >
             <Link
-              href="/gallery"
+              href="/gallery/theses"
               style={{
                 fontSize: "0.6rem",
                 letterSpacing: "0.38em",
@@ -73,7 +73,7 @@ export default function ThesisPage({ params }: PageProps) {
                 ((e.currentTarget as HTMLAnchorElement).style.color = "rgba(205, 185, 145, 0.78)")
               }
             >
-              ← The Collection
+              ← Broad Investment Theses
             </Link>
           </motion.div>
 
@@ -265,7 +265,7 @@ export default function ThesisPage({ params }: PageProps) {
             }}
           >
             <Link
-              href="/gallery"
+              href="/gallery/theses"
               style={{
                 fontSize: "0.6rem",
                 letterSpacing: "0.38em",
@@ -282,7 +282,7 @@ export default function ThesisPage({ params }: PageProps) {
                 ((e.currentTarget as HTMLAnchorElement).style.color = "rgba(205, 185, 145, 0.78)")
               }
             >
-              ← Return to the Collection
+              ← Return to Broad Investment Theses
             </Link>
           </motion.div>
         </article>
