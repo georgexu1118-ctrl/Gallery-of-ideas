@@ -12,7 +12,7 @@ export default function LandingPage() {
   async function handleEnter() {
     if (isExiting) return;
     setIsExiting(true);
-    await new Promise((r) => setTimeout(r, 1050));
+    await new Promise((r) => setTimeout(r, 500));
     router.push("/gallery");
   }
 
@@ -26,7 +26,7 @@ export default function LandingPage() {
         style={{ background: "#0b0c10", zIndex: 50 }}
         initial={{ opacity: 0 }}
         animate={{ opacity: isExiting ? 1 : 0 }}
-        transition={{ duration: 0.95, ease: [0.4, 0, 0.2, 1] }}
+        transition={{ duration: 0.45, ease: [0.4, 0, 0.2, 1] }}
       />
 
       {/* Hero content */}
@@ -40,17 +40,17 @@ export default function LandingPage() {
           filter: isExiting ? "blur(8px)" : "blur(0px)",
         }}
         transition={{
-          opacity: { duration: isExiting ? 0.55 : 1.6, ease: "easeInOut" },
-          y: { duration: isExiting ? 0.55 : 1.6 },
-          filter: { duration: isExiting ? 0.55 : 0.01 },
-          delay: isExiting ? 0 : 0.4,
+          opacity: { duration: isExiting ? 0.3 : 0.8, ease: "easeInOut" },
+          y: { duration: isExiting ? 0.3 : 0.8 },
+          filter: { duration: isExiting ? 0.3 : 0.01 },
+          delay: isExiting ? 0 : 0.15,
         }}
       >
         {/* Collection label */}
         <motion.p
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.7, duration: 1.2, ease: "easeOut" }}
+          transition={{ delay: 0.25, duration: 0.6, ease: "easeOut" }}
           style={{
             fontSize: "0.62rem",
             letterSpacing: "0.48em",
@@ -67,7 +67,7 @@ export default function LandingPage() {
         <motion.h1
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.9, duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ delay: 0.35, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           style={{
             fontFamily: 'var(--font-cormorant), "Cormorant Garamond", Georgia, serif',
             fontSize: "clamp(4.2rem, 10.5vw, 9rem)",
@@ -87,7 +87,7 @@ export default function LandingPage() {
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1.3, duration: 1.4, ease: "easeOut" }}
+          transition={{ delay: 0.55, duration: 0.7, ease: "easeOut" }}
           style={{
             fontSize: "clamp(0.6rem, 1.1vw, 0.7rem)",
             letterSpacing: "0.35em",
@@ -111,7 +111,7 @@ export default function LandingPage() {
           disabled={isExiting}
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.65, duration: 1, ease: "easeOut" }}
+          transition={{ delay: 0.75, duration: 0.5, ease: "easeOut" }}
           whileHover={{ scale: 1.015 }}
           whileTap={{ scale: 0.985 }}
           style={{
@@ -155,7 +155,7 @@ export default function LandingPage() {
         }}
         initial={{ opacity: 0 }}
         animate={{ opacity: isExiting ? 0 : 1 }}
-        transition={{ delay: 2.1, duration: 1.3 }}
+        transition={{ delay: 1.0, duration: 0.7 }}
       >
         Curated by George Xu
       </motion.p>
